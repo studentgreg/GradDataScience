@@ -1,0 +1,97 @@
+"""
+In-Class Activity: Exploratory Data Analysis (EDA) with Starbucks Drinks
+
+Dataset: starbucks_drinkMenu_expanded.csv (available in Canvas)
+Goal: Understand what the dataset contains, identify patterns, and create a meaningful visualization.
+"""
+
+print("*************** Part 1 ***************")
+
+"""
+1. Load the CSV file into a pandas DataFrame
+2. Print:
+- The full DataFrame (⚠️ observe what happens)
+- The first 5 rows
+- The last 5 rows
+
+3. Display:
+- Column names
+- Dataset info (data types + missing values)
+- Descriptive statistics
+
+💡 Reflection questions:
+
+A) Why is printing the entire DataFrame usually a bad idea?
+B) Which columns are numeric? Which are categorical?
+C) Do the statistics make sense for food and drinks?
+"""
+
+print("*************** Part 2 ***************")
+"""
+1. Select and print only these columns:
+- Beverage
+- Caffeine (mg)
+- Sodium (mg)
+
+Display:
+- One specific row (your choice)
+- Two different rows (your choice)
+- Those same rows, but only for two columns
+
+💡 Reflection questions:
+A) When would you select rows vs columns?
+B) What kind of question would each selection help answer?
+"""
+
+print("*************** Part 3 ***************")
+
+"""
+1. Create a table showing where missing values exist
+2. Count how many missing values each column has
+
+💡 Reflection questions:
+
+A) Which columns have missing values?
+B) Would you drop, fill, or ignore them? Why?
+"""
+
+print("*************** Part 4 ***************")
+"""
+1. Filter the dataset to show beverages with:
+- Calories below 100
+- Improve the filter to show beverages with:
+- Calories below 100 AND
+- Caffeine below 50 mg
+
+⚠️ Challenge:
+Make sure your condition works correctly. If it doesn’t, debug it.
+
+💡 Reflection questions:
+A) What kind of customer might this filter represent?
+B) Why do we need parentheses in compound conditions?
+"""
+
+print("*************** Part 5 ***************")
+"""
+1. Group the dataset by Beverage_category
+2. Compute the average calories per category
+3. Print the result
+
+💡 Reflection questions:
+A) Which category is the most calorie-dense on average?
+B) Why is the mean a reasonable (or not) choice here?
+"""
+
+print("*************** Part 6 ***************")
+
+"""
+1. Create a new DataFrame containing only numeric nutrition columns
+2. Compute the correlation matrix
+3. Plot a correlation heatmap using Plotly
+
+💡 Reflection questions:
+
+A) Which nutrients are strongly correlated?
+B) Are there any surprising relationships?
+C) Why does correlation not imply causation?
+"""
