@@ -1,7 +1,7 @@
 """
 In-Class Activity: Exploratory Data Analysis (EDA) with Starbucks Drinks
 
-Dataset: starbucks_drinkMenu_expanded.csv (available in Canvas)
+Dataset: starbucks_drinkMenu_expanded.csv (available in Canvas and GitHub)
 Goal: Understand what the dataset contains, identify patterns, and create a meaningful visualization.
 """
 
@@ -25,7 +25,16 @@ A) Why is printing the entire DataFrame usually a bad idea?
 B) Which columns are numeric? Which are categorical?
 C) Do the statistics make sense for food and drinks?
 """
+import pandas as pd
+# pd.set_option('display.max_columns', None)
+df = pd.read_csv("logs/starbucks_drinkMenu_expanded.csv")
 
+print(df.head())
+print(df.tail())
+
+print(df.columns)
+print(df.info())
+print(df.describe())
 print("*************** Part 2 ***************")
 """
 1. Select and print only these columns:
@@ -42,6 +51,11 @@ Display:
 A) When would you select rows vs columns?
 B) What kind of question would each selection help answer?
 """
+print(df[['Beverage', 'Caffeine (mg)', 'Sodium (mg)']])
+
+print(df.loc[10])
+print(df.loc[[10, 20]])
+print(df.loc[[10,20],["Calories","Caffeine (mg)"]])
 
 print("*************** Part 3 ***************")
 
@@ -54,6 +68,13 @@ print("*************** Part 3 ***************")
 A) Which columns have missing values?
 B) Would you drop, fill, or ignore them? Why?
 """
+
+missing_values = {
+    "Feature":df.columns,
+    "Missing Values":df.isna().sum(),
+    "Percentage of Missing":(df.isna().sum() / len(df)) * 100
+}
+print(pd.DataFrame(missing_values))
 
 print("*************** Part 4 ***************")
 """
@@ -70,7 +91,15 @@ Make sure your condition works correctly. If it doesn’t, debug it.
 A) What kind of customer might this filter represent?
 B) Why do we need parentheses in compound conditions?
 """
+condition1 = df["Calories"]<100
+low_cal = df[condition1]
+print(low_cal)
 
+condition2 = df["Caffeine (mg)"]<50
+lowCalLowCaf = df[condition1 & condition2]
+print(lowCalLowCaf)
+
+print(df[condition1 & ~condition2])
 print("*************** Part 5 ***************")
 """
 1. Group the dataset by Beverage_category
@@ -82,6 +111,7 @@ A) Which category is the most calorie-dense on average?
 B) Why is the mean a reasonable (or not) choice here?
 """
 
+print(df.groupby("Beverage_category")["Calories"].mean())
 print("*************** Part 6 ***************")
 
 """
@@ -95,3 +125,18 @@ A) Which nutrients are strongly correlated?
 B) Are there any surprising relationships?
 C) Why does correlation not imply causation?
 """
+
+n_df = df.select_dtypes(include='number')
+
+print(n_df.head())
+
+corr = n_df.corr()
+
+import plotly.express as px
+
+fig = px.imshow(
+    corr,
+    text_auto=True,
+    title="Correlation Matrix Heatmap"
+)
+fig.show()
