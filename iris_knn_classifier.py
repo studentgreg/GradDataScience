@@ -10,10 +10,12 @@ iris = load_iris()
 print("Features: columns are sepal length, sepal width, petal length, petal width\n",iris.data)
 print("labels: 0, 1, 2 correspond to the three iris species\n",iris.target)
 
+
 print("Splitting into training and testing sets")
 print("Usually: 80% train, 20% test")
 X = iris.data
 y = iris.target
+
 
 print("Building a k-NN Classifier")
 test_size=0.4
@@ -27,7 +29,10 @@ print(f"Selected random state: {random_state}")
 print(f"Selected n neighbors: {n_neighbors}")
 print("Initialize a k-NN classifier and train it")
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size, random_state=random_state)
+X_train, X_test, y_train, y_test = train_test_split(X,
+                                                    y,
+                                                    test_size=test_size,
+                                                    random_state=random_state)
 model = KNeighborsClassifier(n_neighbors=n_neighbors)
 model.fit(X_train, y_train)  # learn from the training data2
 print(model)
@@ -39,3 +44,4 @@ print(y_pred)
 # 5. Evaluate the accuracy of the model on the test set
 accuracy = (y_pred == y_test).mean()
 print(f"Test accuracy: {accuracy}")
+""""""
